@@ -6,7 +6,7 @@ O **DevCurrency** é uma aplicação web que permite aos usuários visualizar da
 
 ## 🌐 Acessar Versão Online
 
-**[Acesse a aplicação ao vivo clicando aqui](https://seu-link-deploy.com)**
+**[Acesse a aplicação ao vivo clicando aqui](cripto-app.vercel.app)**
 
 ---
 
