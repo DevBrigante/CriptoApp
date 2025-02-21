@@ -6,19 +6,19 @@ import { Layout } from './components/layout'
 
 const router = createBrowserRouter([
     {
-        element: <Layout/>,
+        element: <Layout />,
         children: [
             {
                 path: "/",
-                element: <Home/>
+                element: <Home />
             },
             {
                 path: "/detail/:cripto",
-                element: <Detail/>
+                element: <Detail />
             },
             {
                 path: "*",
-                element: <NotFound/>
+                element: <NotFound />
             }
         ]
     }

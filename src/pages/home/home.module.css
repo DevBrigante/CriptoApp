@@ -1,20 +1,20 @@
-.container{
+.container {
     margin: 0 14px;
 }
 
-.form{
+.form {
     width: 100%;
     display: flex;
     gap: 24px;
 }
 
-.center{
+.center {
     text-align: center;
     margin-bottom: 14px;
     color: #FFF;
 }
 
-.form input{
+.form input {
     width: 100%;
     height: 44px;
     border: 0;
@@ -23,11 +23,11 @@
     outline: none;
 }
 
-.form button{
+.form button {
     background: transparent;
 }
 
-table{
+table {
     border-collapse: separate;
     border-spacing: 0 14px;
     margin: 0;
@@ -36,52 +36,52 @@ table{
     table-layout: fixed;
 }
 
-table caption{
+table caption {
     font-size: 16px;
     margin: 0.5em 0 0.75em;
 }
 
-th{
+th {
     color: #FFF;
 }
 
-.tr{
+.tr {
     background-color: #1D1C20;
 }
 
 td:first-child,
-th:first-child{
+th:first-child {
     border-radius: 8px 0 0 8px;
 }
 
 td:last-child,
-th:last-child{
+th:last-child {
     border-radius: 0 8px 8px 0;
 }
 
 table th,
-table td{
+table td {
     padding: 14px;
     text-align: center;
 }
 
-.tdLabel{
+.tdLabel {
     font-weight: bold;
     font-size: 18px;
     color: #FFF;
 }
 
-.tdProfit{
+.tdProfit {
     color: #12F98A;
     font-weight: bold;
 }
 
-.tdLoss{
+.tdLoss {
     color: #F91257;
     font-weight: bold;
 }
 
-.buttonMore{
+.buttonMore {
     background-color: #30BEFF;
     padding: 8px 24px;
     color: #FFF;
@@ -91,22 +91,22 @@ table td{
     font-size: 18px;
 }
 
-.buttonMore:hover{
+.buttonMore:hover {
     color: #D3D3D3;
 }
 
-.logo{
+.logo {
     width: 20px;
     height: 20px;
     transition: all 1s;
 }
 
-.logo:hover{
+.logo:hover {
     transform: scale(1.5);
     z-index: 99;
 }
 
-.name{
+.name {
     display: flex;
     gap: 8px;
     align-items: center;
@@ -116,18 +116,18 @@ table td{
 RESPONSIVIDADE TABELA
 */
 
-@media screen and (max-width: 600px){
-    
-    .name img{
+@media screen and (max-width: 600px) {
+
+    .name img {
         margin-left: 14px;
     }
 
 
-    table{
+    table {
         border: 0;
     }
 
-    table thead{
+    table thead {
         border: none;
         clip: rect(0 0 0 0);
         height: 1px;
@@ -138,37 +138,37 @@ RESPONSIVIDADE TABELA
         padding: 0;
     }
 
-    .tr{
+    .tr {
         border-bottom: 1px solid #DDD;
         display: block;
         margin-bottom: 14px;
     }
 
-    table td{
-        border-bottom: 1px solid rgba(221,221,221, 0.170);
+    table td {
+        border-bottom: 1px solid rgba(221, 221, 221, 0.170);
         display: block;
         text-align: right;
         font-size: 14px;
     }
-    
-    table td::before{
+
+    table td::before {
         content: attr(data-label);
         float: left;
         font-weight: bold;
         text-transform: uppercase;
     }
 
-    table td:last-child{
+    table td:last-child {
         border-bottom: 0;
     }
 
     td:first-child,
-    th:first-child{
-    border-radius: 0;
+    th:first-child {
+        border-radius: 0;
     }
 
     td:last-child,
-    th:last-child{
-    border-radius: 0;
+    th:last-child {
+        border-radius: 0;
     }
 }

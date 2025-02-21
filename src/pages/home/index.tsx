@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useState, FormEvent, useEffect } from 'react'
 
 
-export interface CoinProps{
+export interface CoinProps {
   id: string;
   name: string;
   symbol: string;
@@ -22,7 +22,7 @@ export interface CoinProps{
   formatedVolume?: string;
 }
 
-interface DataProps{
+interface DataProps {
   data: CoinProps[]
 }
 
@@ -33,65 +33,65 @@ export function Home() {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  useEffect(()=>{
-    async function getData(){
+  useEffect(() => {
+    async function getData() {
       fetch(`https://api.coincap.io/v2/assets?limit=10&offset=${offset}`)
-      .then(response => response.json())
-      .then((data: DataProps)=>{ // dentro dessa lista a gente vai receber mais uma propriedade chamada data que é uma lista e dentro dela tem todos os objetos
-        const coinsData = data.data; // Para não criar sempre data.data, já criei uma const para isso
-  
-        const price = Intl.NumberFormat("en-US", {
-          style: "currency",
-          currency: "USD"
+        .then(response => response.json())
+        .then((data: DataProps) => { // dentro dessa lista a gente vai receber mais uma propriedade chamada data que é uma lista e dentro dela tem todos os objetos
+          const coinsData = data.data; // Para não criar sempre data.data, já criei uma const para isso
+
+          const price = Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD"
+          })
+
+          const priceCompact = Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD",
+            notation: "compact"
+          })
+
+          const formatedResult = coinsData.map((item) => {
+            const formated = {
+              ...item,
+              formatedPrice: price.format(Number(item.priceUsd)), // Como devolve em string eu converto em Number
+              formatedMarket: priceCompact.format(Number(item.marketCapUsd)),
+              formatedVolume: priceCompact.format(Number(item.volumeUsd24Hr))
+            }
+
+            return formated;
+          })
+
+          const listCoins = [...coins, ...formatedResult] // Para manter as 10 moedas e colocar o resultado da api a+ na minha lista
+          setCoins(listCoins)
+          setLoading(false);
         })
-  
-        const priceCompact = Intl.NumberFormat("en-US", {
-          style: "currency",
-          currency: "USD",
-          notation: "compact"
-        })
-  
-        const formatedResult = coinsData.map((item)=>{
-          const formated = {
-            ...item,
-            formatedPrice: price.format(Number(item.priceUsd)), // Como devolve em string eu converto em Number
-            formatedMarket: priceCompact.format(Number(item.marketCapUsd)),
-            formatedVolume: priceCompact.format(Number(item.volumeUsd24Hr))
-          }
-  
-          return formated;
-        })
-  
-        const listCoins = [...coins, ...formatedResult] // Para manter as 10 moedas e colocar o resultado da api a+ na minha lista
-        setCoins(listCoins)
-        setLoading(false);
-      })
     }
 
     getData()
-  }, [offset])
+  }, [offset]) //eslint-disable-line
 
-  if(loading){
-    return(
-    <div>
-      <h4 className={styles.center}>Carregando detalhes...</h4>
-    </div>
+  if (loading) {
+    return (
+      <div>
+        <h4 className={styles.center}>Carregando detalhes...</h4>
+      </div>
     )
   }
 
 
 
-  function handleSubmit(e: FormEvent){
+  function handleSubmit(e: FormEvent) {
     e.preventDefault();
 
-    if(input === '') return;
+    if (input === '') return;
 
     navigate(`/detail/${input}`)
-    
+
   }
 
-  function handleGetMore(){
-    if(offset === 0){
+  function handleGetMore() {
+    if (offset === 0) {
       setOffset(10)
       return;
     }
@@ -101,33 +101,33 @@ export function Home() {
 
 
 
-    return(
-      <main className={styles.container}>
-        <form className={styles.form}
+  return (
+    <main className={styles.container}>
+      <form className={styles.form}
         onSubmit={handleSubmit} >
-          <input type="text"
+        <input type="text"
           placeholder='Digite o nome da moeda... Exemplo: Bitcoin'
           value={input}
-          onChange={(e)=> setInput(e.target.value)} />
+          onChange={(e) => setInput(e.target.value)} />
 
-          <button type="submit">
-            <BsSearch size={30} color="FFF"/>
-          </button>
-        </form>
+        <button type="submit">
+          <BsSearch size={30} color="FFF" />
+        </button>
+      </form>
 
-        <table>
-          <thead>
-            <tr>
-              <th scope="col">Moeda</th>
-              <th scope="col">Valor mercado</th>
-              <th scope="col">Preço</th>
-              <th scope="col">Volume</th>
-              <th scope="col">Mudança 24h</th>
-            </tr>
-          </thead>
-          
-          <tbody id='tbody'>
-            {coins.length > 0 && coins.map((item)=>(
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Moeda</th>
+            <th scope="col">Valor mercado</th>
+            <th scope="col">Preço</th>
+            <th scope="col">Volume</th>
+            <th scope="col">Mudança 24h</th>
+          </tr>
+        </thead>
+
+        <tbody id='tbody'>
+          {coins.length > 0 && coins.map((item) => (
             <tr className={styles.tr} key={item.id}>
               <td className={styles.tdLabel} data-label="Moeda">
                 <div className={styles.name}>
@@ -150,15 +150,14 @@ export function Home() {
                 <span>{Number(item.changePercent24Hr).toFixed(2)}</span>
               </td>
             </tr>
-            ))}
-          </tbody>
-        </table>
+          ))}
+        </tbody>
+      </table>
 
-        <button className={styles.buttonMore}
+      <button className={styles.buttonMore}
         onClick={handleGetMore}>Carregar mais...</button>
 
 
-      </main>
-    )
-  }
-  
+    </main>
+  )
+}

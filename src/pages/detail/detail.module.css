@@ -1,15 +1,15 @@
-.container{
+.container {
     padding: 0 14px;
     color: #FFF;
 }
 
-.center{
+.center {
     text-align: center;
     margin-bottom: 14px;
     color: #FFF;
 }
 
-.content{
+.content {
     background-color: #0F0F0F;
     margin: 24px auto;
     padding: 24px;
@@ -21,20 +21,20 @@
     gap: 14px;
 }
 
-.logo{
+.logo {
     width: 60px;
     height: 60px;
     transition: all 1s;
 }
 
-.logo:hover{
+.logo:hover {
     transform: rotate(360deg);
 }
 
-.profit{
+.profit {
     color: #12F98A;
 }
 
-.loss{
+.loss {
     color: #F91257;
 }
